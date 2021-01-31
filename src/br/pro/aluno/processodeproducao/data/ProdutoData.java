@@ -103,4 +103,12 @@ public class ProdutoData extends Conexao{
         }
         return dados;
     }
+    
+    public boolean editarEstoque(ProdutoModel obj) throws Exception{
+        String sql = "UPDATE produto SET quantEstoque = ? WHERE idProd = ?";
+        PreparedStatement ps = getConexao().prepareStatement(sql);
+        ps.setInt(1, obj.getQuantEstoque());
+         ps.setInt(2, obj.getIdProd());   
+        return ps.executeUpdate() > 0;
+    }
 }

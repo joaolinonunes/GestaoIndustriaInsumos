@@ -5,10 +5,8 @@
  */
 package br.pro.aluno.processodeproducao.view;
 
-import br.pro.aluno.processodeproducao.data.MatPrimaData;
-import br.pro.aluno.processodeproducao.data.PecaData;
-import br.pro.aluno.processodeproducao.model.MatPrimaModel;
-import br.pro.aluno.processodeproducao.model.PecaModel;
+import br.pro.aluno.processodeproducao.data.ProdutoData;
+import br.pro.aluno.processodeproducao.model.ProdutoModel;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,27 +15,19 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author João
  */
-public class JIFControPeca extends javax.swing.JInternalFrame {
+public class JIFControProduto extends javax.swing.JInternalFrame {
 
-     PecaModel obj;
-    PecaData DAO;
-    int acao = 0;
+    ProdutoModel obj;
+    ProdutoData DAO;
     int valor = 0;
-    MatPrimaData DAOMatPrima;
-    ArrayList<MatPrimaModel> listaMatPrima;
-    ArrayList<PecaModel> lista = new ArrayList<>();
-    
-    public JIFControPeca() {
-       
-        try{ 
-            obj = new PecaModel();
-            DAO = new PecaData();
-            DAOMatPrima = new MatPrimaData();
-            listaMatPrima = DAOMatPrima.carregarCombo();
-            initComponents();
-           
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Erro: "+e.getMessage());
+    int acao = 0;
+    ArrayList<ProdutoModel> lista = new ArrayList<>();
+    public JIFControProduto() {
+        initComponents();
+        try {
+            obj = new ProdutoModel();
+            DAO = new ProdutoData();
+        } catch (Exception e) {
         }
     }
 
@@ -50,7 +40,15 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jlNomeProd = new javax.swing.JLabel();
+        jtNomeProduto = new javax.swing.JTextField();
+        jlId = new javax.swing.JLabel();
+        jlId2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jtNovoValor = new javax.swing.JTextField();
+        jbSoma = new javax.swing.JButton();
+        jbRetirar = new javax.swing.JButton();
         jlPesquisa = new javax.swing.JLabel();
         jtPesquisa = new javax.swing.JTextField();
         jbSalvar = new javax.swing.JButton();
@@ -60,21 +58,79 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
         jtbDados = new javax.swing.JTable();
         jlQuantEstoque = new javax.swing.JLabel();
         jtQuantEstoque = new javax.swing.JTextField();
-        jlNomePeca = new javax.swing.JLabel();
-        jtNomePeca = new javax.swing.JTextField();
-        jlId = new javax.swing.JLabel();
-        jlId2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jtNovoValor = new javax.swing.JTextField();
-        jbSoma = new javax.swing.JButton();
-        jbRetirar = new javax.swing.JButton();
-
-        jLabel1.setText("Valor para alterar");
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Controle do Estoque de Peças");
+        setTitle("Controle do Estoque de Produtos");
+
+        jlNomeProd.setText("Nome do Produto");
+
+        jtNomeProduto.setEnabled(false);
+        jtNomeProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtNomeProdutoActionPerformed(evt);
+            }
+        });
+
+        jlId.setText("Id");
+
+        jlId2.setText("0");
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel2.setText("Valor para alterar");
+
+        jtNovoValor.setEnabled(false);
+
+        jbSoma.setText("somar  +");
+        jbSoma.setEnabled(false);
+        jbSoma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSomaActionPerformed(evt);
+            }
+        });
+
+        jbRetirar.setText("subtrair  -");
+        jbRetirar.setEnabled(false);
+        jbRetirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRetirarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jtNovoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addComponent(jbRetirar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbSoma)))
+                .addGap(47, 47, 47))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSoma)
+                    .addComponent(jLabel2))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jbRetirar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtNovoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
 
         jlPesquisa.setText("Pesquisar");
 
@@ -147,75 +203,6 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
             }
         });
 
-        jlNomePeca.setText("Nome da peça");
-
-        jtNomePeca.setEnabled(false);
-        jtNomePeca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtNomePecaActionPerformed(evt);
-            }
-        });
-
-        jlId.setText("Id");
-
-        jlId2.setText("0");
-
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel2.setText("Valor para alterar");
-
-        jtNovoValor.setEnabled(false);
-
-        jbSoma.setText("somar  +");
-        jbSoma.setEnabled(false);
-        jbSoma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSomaActionPerformed(evt);
-            }
-        });
-
-        jbRetirar.setText("subtrair  -");
-        jbRetirar.setEnabled(false);
-        jbRetirar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbRetirarActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jtNovoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addComponent(jbRetirar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbSoma)))
-                .addGap(47, 47, 47))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbSoma)
-                    .addComponent(jLabel2))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jbRetirar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtNovoValor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -240,9 +227,9 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
                         .addComponent(jlId2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(222, 222, 222))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jlNomePeca, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jlNomeProd, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtNomePeca)
+                        .addComponent(jtNomeProduto)
                         .addGap(27, 27, 27))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -271,8 +258,8 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
                             .addComponent(jlId2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlId))
                         .addGap(17, 17, 17)
-                        .addComponent(jlNomePeca))
-                    .addComponent(jtNomePeca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jlNomeProd))
+                    .addComponent(jtNomeProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
@@ -300,15 +287,32 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNomeProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtNomeProdutoActionPerformed
+
+    private void jbSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSomaActionPerformed
+
+        valor = Integer.parseInt(jtQuantEstoque.getText())+Integer.parseInt(jtNovoValor.getText());
+        jtQuantEstoque.setText(""+valor);
+        valor = 0;
+    }//GEN-LAST:event_jbSomaActionPerformed
+
+    private void jbRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRetirarActionPerformed
+        valor = Integer.parseInt(jtQuantEstoque.getText())-Integer.parseInt(jtNovoValor.getText());
+        jtQuantEstoque.setText(""+valor);
+        valor = 0;
+    }//GEN-LAST:event_jbRetirarActionPerformed
+
     private void jtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyReleased
         try {
             if(jtPesquisa.getText().trim().length() >= 1){
                 lista = DAO.pesquisar(jtPesquisa.getText());
                 DefaultTableModel mp = (DefaultTableModel) jtbDados.getModel();
                 mp.setNumRows(0);//limpar a tabela
-                for(PecaModel ob : lista){
-                    mp.addRow(new String[]{String.valueOf(ob.getIdPeca()),
-                        ob.getNomePeca(),
+                for(ProdutoModel ob : lista){
+                    mp.addRow(new String[]{String.valueOf(ob.getIdProd()),
+                        ob.getNomeProd(),
                         String.valueOf(ob.getAltura()),
                         String.valueOf(ob.getLargura()),
                         String.valueOf(ob.getComprimento()),
@@ -359,13 +363,13 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
         jbCancelar.setEnabled(false);
         jbEditar.setEnabled(false);
         jtPesquisa.setEnabled(true);
-        jtNomePeca.setEnabled(false);
+        jtNomeProduto.setEnabled(false);
         jtQuantEstoque.setEnabled(false);
         jtNovoValor.setEnabled(false);
         jbSoma.setEnabled(false);
         jbRetirar.setEnabled(false);
         jtPesquisa.setText(null);
-        jtNomePeca.setText(null);
+        jtNomeProduto.setText(null);
         jtNovoValor.setText(null);
         jtQuantEstoque.setText(null);
         jlId2.setText(null);
@@ -374,28 +378,28 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
-     //   br.pro.aluno.processodeproducao.extras.Formularios.tratarCampos(this, true);
+        //   br.pro.aluno.processodeproducao.extras.Formularios.tratarCampos(this, true);
         jtQuantEstoque.setEnabled(false);
         jbSalvar.setEnabled(true);
         jbCancelar.setEnabled(true);
         jbEditar.setEnabled(false);
-         jtPesquisa.setEnabled(false);
-         jtNovoValor.setEnabled(true);
-         jbSoma.setEnabled(true);
-         jbRetirar.setEnabled(true);
+        jtPesquisa.setEnabled(false);
+        jtNovoValor.setEnabled(true);
+        jbSoma.setEnabled(true);
+        jbRetirar.setEnabled(true);
         acao = 2;//Atualizar - update
     }//GEN-LAST:event_jbEditarActionPerformed
 
     private void jtbDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbDadosMouseClicked
         try {
             int linha = jtbDados.getSelectedRow();
-            jlId2.setText(""+lista.get(linha).getIdPeca());
-            jtNomePeca.setText(lista.get(linha).getNomePeca());
+            jlId2.setText(""+lista.get(linha).getIdProd());
+            jtNomeProduto.setText(lista.get(linha).getNomeProd());
             jtQuantEstoque.setText(""+lista.get(linha).getQuantEstoque());
-     //       for(int i = 0; i < listaMatPrima.size(); i++)
-      //      if(listaMatPrima.get(i).getIdMatPrima() == lista.get(linha).getMatPrima().getIdMatPrima())
-     //       jcbMatPrima.setSelectedIndex(i);
-            jtNomePeca.setEnabled(false);
+            //       for(int i = 0; i < listaMatPrima.size(); i++)
+            //      if(listaMatPrima.get(i).getIdMatPrima() == lista.get(linha).getMatPrima().getIdMatPrima())
+            //       jcbMatPrima.setSelectedIndex(i);
+            jtNomeProduto.setEnabled(false);
             jtQuantEstoque.setEnabled(false);
             jbSalvar.setEnabled(false);
             jbCancelar.setEnabled(true);
@@ -409,26 +413,8 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtQuantEstoqueActionPerformed
 
-    private void jtNomePecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNomePecaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtNomePecaActionPerformed
-
-    private void jbSomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSomaActionPerformed
-       
-       valor = Integer.parseInt(jtQuantEstoque.getText())+Integer.parseInt(jtNovoValor.getText());
-       jtQuantEstoque.setText(""+valor);
-       valor = 0;
-    }//GEN-LAST:event_jbSomaActionPerformed
-
-    private void jbRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRetirarActionPerformed
-        valor = Integer.parseInt(jtQuantEstoque.getText())-Integer.parseInt(jtNovoValor.getText());
-        jtQuantEstoque.setText(""+valor);
-        valor = 0;
-    }//GEN-LAST:event_jbRetirarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -439,19 +425,19 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbSoma;
     private javax.swing.JLabel jlId;
     private javax.swing.JLabel jlId2;
-    private javax.swing.JLabel jlNomePeca;
+    private javax.swing.JLabel jlNomeProd;
     private javax.swing.JLabel jlPesquisa;
     private javax.swing.JLabel jlQuantEstoque;
-    private javax.swing.JTextField jtNomePeca;
+    private javax.swing.JTextField jtNomeProduto;
     private javax.swing.JTextField jtNovoValor;
     private javax.swing.JTextField jtPesquisa;
     private javax.swing.JTextField jtQuantEstoque;
     private javax.swing.JTable jtbDados;
     // End of variables declaration//GEN-END:variables
 
- private boolean validarCampos() throws Exception{
+private boolean validarCampos() throws Exception{
         String msg = "";
-        if(jtNomePeca.getText().length() < 2)
+        if(jtNomeProduto.getText().length() < 2)
             msg +="O campo nome deve conter mais de 2 caracteres \n";
         if(jtQuantEstoque.getText().length() < 0)
             msg +="O campo quantidade deve conter pelo menos 1 caractere \n";
@@ -464,11 +450,10 @@ public class JIFControPeca extends javax.swing.JInternalFrame {
     
     
     private boolean preencherObjeto() throws Exception{
-        obj.setIdPeca(Integer.parseInt(jlId2.getText()));
+        obj.setIdProd(Integer.parseInt(jlId2.getText()));
         obj.setQuantEstoque(Integer.parseInt(jtQuantEstoque.getText()));
  
         return true;
     }
-
 
 }

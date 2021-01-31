@@ -56,6 +56,7 @@ public class JFPrincipal extends javax.swing.JFrame {
         jmiFazerPedido = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jmiControPeca = new javax.swing.JMenuItem();
+        jmiControProd = new javax.swing.JMenuItem();
         jmRelatorio = new javax.swing.JMenu();
         jmirelCli = new javax.swing.JMenuItem();
         jmirelProd = new javax.swing.JMenuItem();
@@ -169,6 +170,14 @@ public class JFPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jmiControPeca);
+
+        jmiControProd.setText("Controle Produto");
+        jmiControProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiControProdActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmiControProd);
 
         jmiPrincipal.add(jMenu1);
 
@@ -333,6 +342,12 @@ public class JFPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmirelProdActionPerformed
 
+    private void jmiControProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiControProdActionPerformed
+        JIFControProduto janela = new JIFControProduto();
+        jdpPrincipal.add(janela);
+        janela.setVisible(true);
+    }//GEN-LAST:event_jmiControProdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -380,6 +395,7 @@ public class JFPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmiCadastros;
     private javax.swing.JMenuItem jmiCliente;
     private javax.swing.JMenuItem jmiControPeca;
+    private javax.swing.JMenuItem jmiControProd;
     private javax.swing.JMenuItem jmiDadosPedidos;
     private javax.swing.JMenuItem jmiFazerPedido;
     private javax.swing.JMenuItem jmiFuncionario;
